@@ -9,6 +9,8 @@ public class PlayerController {
 
     @PostMapping ("/")
     public String working() {
+
         return "Hi Jaggu";
     }
+
 }

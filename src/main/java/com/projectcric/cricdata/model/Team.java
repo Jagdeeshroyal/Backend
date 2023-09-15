@@ -14,11 +14,11 @@ import java.util.List;
 public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @ManyToOne
+    private int teamId;
+    @OneToMany(mappedBy = "team")
     private List<Player> players;
 
-    @ManyToMany
+    @ManyToMany()
     private List<Match> matches;
     private String name;
 
