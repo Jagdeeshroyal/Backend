@@ -12,14 +12,14 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Venue {
+
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int venueId;
+    private String venueName;
+
     private String city;
 
-    private String name;
-//
-//    @OneToMany(mappedBy = "venue")
-//    private List<Match> matches;
+    @OneToMany(mappedBy = "venue")
+    private List<Match> matches;
 
 }
