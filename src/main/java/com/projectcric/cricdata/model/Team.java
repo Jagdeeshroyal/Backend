@@ -1,9 +1,7 @@
 package com.projectcric.cricdata.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
@@ -11,15 +9,21 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
+@Getter
+@Setter
+@Table(name = "team_tb",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"teamName"})
+)
 public class Team {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int teamId;
+
     @OneToMany(mappedBy = "team")
     private List<Player> players;
 
     @ManyToMany()
     private List<Match> matches;
-    private String name;
+
+    @Id
+    private String teamName;
 
 }

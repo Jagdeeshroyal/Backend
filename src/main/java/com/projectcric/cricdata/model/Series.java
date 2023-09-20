@@ -17,10 +17,12 @@ public class Series {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int seriesId;
+
+    private String name;
     @OneToMany(mappedBy = "series")
     private List<Match> matches;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "winner",referencedColumnName = "teamId")
+    @JoinColumn(name = "winner",referencedColumnName = "teamName")
     private Team winner;
 }

@@ -11,15 +11,16 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"venueName"}))
 public class Venue {
+
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int venueId;
+    private String venueName;
+
     private String city;
 
-    private String name;
-//
-//    @OneToMany(mappedBy = "venue")
-//    private List<Match> matches;
+    @OneToMany(mappedBy = "venue")
+    private List<Match> matches;
 
 }

@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -30,9 +31,9 @@ public class Match {
     )
     private List<Player> players;
 
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "venue_id", referencedColumnName = "venueId")
-//    private Venue venue;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "venue_name", referencedColumnName = "venueName")
+    private Venue venue;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(
@@ -50,9 +51,23 @@ public class Match {
     )
     @JoinTable(
             name = "match_team_tb",
-            inverseJoinColumns = @JoinColumn(name = "team_id", referencedColumnName = "teamId"),
+            inverseJoinColumns = @JoinColumn(name = "team_name", referencedColumnName = "teamName"),
             joinColumns = @JoinColumn(name = "match_id", referencedColumnName = "matchId")
     )
     private List<Team> teams;
+    private String winner;
+    private String playerOfTheMatch;
 
+    public void addTeam(Team team) {
+        this.teams.add(team);
+    }
+
+    public void addPlayer(Player player) {
+        this.players.add(player);
+    }
 }
+
+
+
+
+
