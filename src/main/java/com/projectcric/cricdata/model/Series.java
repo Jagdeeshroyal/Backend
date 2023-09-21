@@ -1,10 +1,8 @@
 package com.projectcric.cricdata.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
@@ -13,16 +11,21 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString
 public class Series {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int seriesId;
 
+    private String season;
+
     private String name;
+    @JsonIgnore
     @OneToMany(mappedBy = "series")
     private List<Match> matches;
 
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "winner",referencedColumnName = "teamName")
+    @JoinColumn(name = "winner", referencedColumnName = "teamName")
     private Team winner;
 }

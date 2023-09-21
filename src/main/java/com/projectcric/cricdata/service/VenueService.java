@@ -95,4 +95,16 @@ public class VenueService {
         return venues;
     }
 
+    public Venue getVenue(String venueName) {
+        Optional<Venue> venue = venueRepo.findByVenueName(venueName);
+        if (venue.isPresent()) {
+            return venue.get();
+        } else {
+            Venue saveVenue = new Venue();
+            saveVenue.setVenueName(venueName);
+            return addVenue(saveVenue);
+        }
+    }
+
+
 }

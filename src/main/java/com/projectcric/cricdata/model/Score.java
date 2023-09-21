@@ -1,16 +1,15 @@
 package com.projectcric.cricdata.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString
 public class Score {
 
     @Id
@@ -18,12 +17,16 @@ public class Score {
     private int scoreId;
     private int runs;
     private int balls;
+    private int fours;
+    private int sixes;
     private String wicket_type;
+    private String bowler;
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "player_id", referencedColumnName = "playerId")
     private Player player;
 
-
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "match_id", referencedColumnName = "matchId")
     private Match match;

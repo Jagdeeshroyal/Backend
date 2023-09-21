@@ -59,8 +59,13 @@ public class PlayerService {
     }
 
     public boolean playerPresent(String registry) {
-        boolean present= playerRepo.findById(registry).isPresent();
+        boolean present = playerRepo.findById(registry).isPresent();
         return present;
+    }
+
+    public Player getPlayer(String playerName) {
+        Player player = playerRepo.findByName(playerName);
+        return player;
     }
 }
 
